@@ -1,0 +1,133 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int sizeMatriz = in.nextInt(), numJogadas = in.nextInt();
+		String[][] mapaMatriz = new String[sizeMatriz][sizeMatriz];
+		// Preenchendo o mapa e armazenando o local inicial
+		int coordAcob = 0, coordBcob = 0;
+		for (int i = 0; i < sizeMatriz; i++) {
+			for (int j = 0; j < sizeMatriz; j++) {
+				mapaMatriz[i][j] = in.next();
+				if (mapaMatriz[i][j].equals("#")) {
+					coordAcob = i;
+					coordBcob = j;
+				}
+			}
+		}
+
+		// Fazendo as jogadas
+		String jogada = "";
+		boolean cobraGanhou = true;
+		for (int i = 0; i < numJogadas; i++) {
+			jogada = in.next();
+
+			switch (jogada) {
+			case "D":
+				if (coordBcob == (sizeMatriz - 1)) {
+					if (mapaMatriz[coordAcob][0].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[coordAcob][0] = "#";
+						coordBcob = 0;
+					}
+				} else {
+					if (mapaMatriz[coordAcob][coordBcob + 1].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[coordAcob][coordBcob + 1] = "#";
+						coordBcob += 1;
+					}
+				}
+				break;
+
+			case "E":
+				if (coordBcob == 0) {
+					if (mapaMatriz[coordAcob][sizeMatriz - 1].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[coordAcob][sizeMatriz - 1] = "#";
+						coordBcob = sizeMatriz - 1;
+					}
+				} else {
+					if (mapaMatriz[coordAcob][coordBcob - 1].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[coordAcob][coordBcob - 1] = "#";
+						coordBcob -= 1;
+					}
+				}
+				break;
+
+			case "C":
+				if (coordAcob == 0) {
+					if (mapaMatriz[sizeMatriz - 1][coordBcob].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[sizeMatriz - 1][coordBcob] = "#";
+						coordAcob = sizeMatriz - 1;
+					}
+				} else {
+					if (mapaMatriz[coordAcob - 1][coordBcob].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[coordAcob - 1][coordBcob] = "#";
+						coordAcob -= 1;
+					}
+				}
+				break;
+
+			case "B":
+				if (coordAcob == (sizeMatriz - 1)) {
+					if (mapaMatriz[0][coordBcob].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[0][coordBcob] = "#";
+						coordAcob = 0;
+					}
+				} else {
+					if (mapaMatriz[coordAcob + 1][coordBcob].equals("@")) {
+						cobraGanhou = false;
+						i += numJogadas;
+					} else {
+						mapaMatriz[coordAcob][coordBcob] = "*";
+						mapaMatriz[coordAcob + 1][coordBcob] = "#";
+						coordAcob += 1;
+					}
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		// Imprimindo a ultima matriz atualizada
+		for (int j = 0; j < sizeMatriz; j++) {
+			for (int l = 0; l < sizeMatriz; l++) {
+				if (l == sizeMatriz - 1)
+					System.out.printf("%s%n", mapaMatriz[j][l]);
+				else
+					System.out.printf("%s ", mapaMatriz[j][l]);
+			}
+		}
+		// Caso tenha perdido
+		if (!cobraGanhou) {
+			System.out.print("Game over.");
+		}
+	}
+}
