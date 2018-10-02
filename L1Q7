@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+        String h = in.nextLine(),
+               f = in.nextLine();
+        int v = in.nextInt();
+        //Mario
+        if (h.equals("Mario") && f.equals("BoomerangFlower")){
+            if (32*4 >= v)
+                System.out.println("Mario conseguiu derrotar o Bowser e salvar a princesa Peach.");
+            else 
+                System.out.println("O Bowser conseguiu escapar.");
+        }
+            
+        if (h.equals("Mario") && f.equals("FireFlower")){
+            if (73*4 >= v)
+                System.out.println("Mario conseguiu derrotar o Bowser e salvar a princesa Peach.");
+            else 
+                System.out.println("O Bowser conseguiu escapar.");
+        }
+      
+        if (h.equals("Mario") && f.equals("IceFlower")){
+            if (50*4 >= v)
+                System.out.println("Mario conseguiu derrotar o Bowser e salvar a princesa Peach.");
+            else 
+                System.out.println("O Bowser conseguiu escapar.");
+        }
+        //Luigi
+        if (h.equals("Luigi") && f.equals("BoomerangFlower")){
+            if (28*4 >= v)
+                System.out.println("Luigi conseguiu derrotar o Bowser e salvar a princesa Peach.");
+            else 
+                System.out.println("O Bowser conseguiu escapar.");
+        }
+            
+        if (h.equals("Luigi") && f.equals("FireFlower")){
+            if (70*4 >= v)
+                System.out.println("Luigi conseguiu derrotar o Bowser e salvar a princesa Peach.");
+            else 
+                System.out.println("O Bowser conseguiu escapar.");
+        }
+      
+        if (h.equals("Luigi") && f.equals("IceFlower")){
+            if (45*4 >= v)
+                System.out.println("Luigi conseguiu derrotar o Bowser e salvar a princesa Peach.");
+            else 
+                System.out.println("O Bowser conseguiu escapar.");
+        }
+  }
+}
