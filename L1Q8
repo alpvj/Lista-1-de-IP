@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		String Pessoa1 = in.nextLine(),
+			   Pessoa2 = in.nextLine(),
+			   Pessoa3 = in.nextLine(),
+			   Pessoa4 = in.nextLine(),
+			   Pessoa5 = in.nextLine(),
+			   Pos1 = Pessoa1, Pos2 = "", Pos3 = "", Pos4 = "", Pos5 = "";
+		//Mario
+		if (Pessoa2.equals("Mario") || Pessoa4.equals("Mario")) 
+			Pos2 = "Mario";
+		else if (Pessoa3.equals("Mario") || Pessoa5.equals("Mario")) 
+			Pos3 = "Mario";
+
+		//Toad
+		if (Pessoa2.equals("Toad") || Pessoa4.equals("Toad") ) {
+			if (Pos2 != "Mario") 
+				Pos2 = "Toad";
+			else
+				Pos4 = "Toad";
+		}
+		if (Pessoa3.equals("Toad") || Pessoa5.equals("Toad")) {
+			if (Pos3 != "Mario")
+				Pos3 = "Toad";
+			else
+				Pos5 = "Toad";
+		}
+		
+		//Luigi
+		if (Pessoa2.equals("Luigi") || Pessoa4.equals("Luigi")) {
+			if (Pos2 != "Mario" && Pos2 != "Toad")
+				Pos2 = "Luigi";
+			else
+				Pos4  = "Luigi";
+		}
+		else if (Pessoa3.equals("Luigi") || Pessoa5.equals("Luigi")) {
+			if (Pos3 != "Mario" && Pos3 != "Toad")
+				Pos3 = "Luigi";
+			else
+				Pos5 = "Luigi";
+		}
+		//Yoshi
+		if (Pos4.equals("") || Pos5.equals("")) {
+			if (Pessoa2.equals("Yoshi") || Pessoa4.equals("Yoshi"))
+				Pos4 = "Yoshi";
+			else
+				Pos5 = "Yoshi";
+		}
+		
+		System.out.printf("%s%n%s%n%s%n%s%n%s", Pos1, Pos2, Pos3, Pos4, Pos5);
+  }
+}
