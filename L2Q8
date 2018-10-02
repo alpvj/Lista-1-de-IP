@@ -1,0 +1,333 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		String frase = "", fraseNova = "", resposta = "";
+		int numeroDeSimb = 0;
+		// frase.replace(oldChar, newChar);
+		while (in.hasNext()) {
+			frase = in.nextLine();
+			fraseNova = "";
+			numeroDeSimb = 0;
+			for (int contador = 0; (frase.length() - 1) >= contador; contador++) {
+				// contar quantos simbolos a esquerda deste CHAR e montar a nova frase
+				switch (frase.charAt(contador)) {
+				case '*':
+					numeroDeSimb++;
+					break;
+				case ')':
+					numeroDeSimb++;
+					break;
+				case '$':
+					numeroDeSimb++;
+					break;
+				case '!':
+					numeroDeSimb++;
+					break;
+				case '+':
+					numeroDeSimb++;
+					break;
+				case '@':
+					numeroDeSimb++;
+					break;
+				case '-':
+					numeroDeSimb++;
+					break;
+				case '/':
+					numeroDeSimb++;
+					break;
+				case '(':
+					numeroDeSimb++;
+					break;
+				case '%':
+					numeroDeSimb++;
+					break;
+				case ',':
+					numeroDeSimb++;
+					break;
+				case '.':
+					numeroDeSimb++;
+					break;
+				case '?':
+					numeroDeSimb++;
+					break;
+				case '0':
+					fraseNova += "*";
+					break;
+				case '1':
+					fraseNova += ")";
+					break;
+				case '2':
+					fraseNova += "$";
+					break;
+				case '3':
+					fraseNova += "!";
+					break;
+				case '4':
+					fraseNova += "+";
+					break;
+				case '5':
+					fraseNova += "@";
+					break;
+				case '6':
+					fraseNova += "-";
+					break;
+				case '7':
+					fraseNova += "/";
+					break;
+				case '8':
+					fraseNova += "(";
+					break;
+				case '9':
+					fraseNova += "%";
+					break;
+				case ' ':
+					fraseNova += "";
+					break;
+				case 'A':
+					fraseNova += "1";
+					break;
+				case 'B':
+					fraseNova += "2";
+					break;
+				case 'C':
+					fraseNova += "3";
+					break;
+				case 'D':
+					fraseNova += "4";
+					break;
+				case 'E':
+					fraseNova += "5";
+					break;
+				case 'F':
+					fraseNova += "6";
+					break;
+				case 'G':
+					fraseNova += "7";
+					break;
+				case 'H':
+					fraseNova += "8";
+					break;
+				case 'I':
+					fraseNova += "9";
+					break;
+				case 'J':
+					fraseNova += "10";
+					break;
+				case 'K':
+					fraseNova += "11";
+					break;
+				case 'L':
+					fraseNova += "12";
+					break;
+				case 'M':
+					fraseNova += "13";
+					break;
+				case 'N':
+					fraseNova += "14";
+					break;
+				case 'O':
+					fraseNova += "15";
+					break;
+				case 'P':
+					fraseNova += "16";
+					break;
+				case 'Q':
+					fraseNova += "17";
+					break;
+				case 'R':
+					fraseNova += "18";
+					break;
+				case 'S':
+					fraseNova += "19";
+					break;
+				case 'T':
+					fraseNova += "20";
+					break;
+				case 'U':
+					fraseNova += "21";
+					break;
+				case 'V':
+					fraseNova += "22";
+					break;
+				case 'W':
+					fraseNova += "23";
+					break;
+				case 'X':
+					fraseNova += "24";
+					break;
+				case 'Y':
+					fraseNova += "25";
+					break;
+				case 'Z':
+					fraseNova += "26";
+					break;
+				case 'a':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "A";
+					else
+						fraseNova += "a";
+					break;
+				case 'b':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "B";
+					else
+						fraseNova += "b";
+					break;
+				case 'c':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "C";
+					else
+						fraseNova += "c";
+					break;
+				case 'd':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "D";
+					else
+						fraseNova += "d";
+					break;
+				case 'e':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "E";
+					else
+						fraseNova += "e";
+					break;
+				case 'f':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "F";
+					else
+						fraseNova += "f";
+					break;
+				case 'g':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "G";
+					else
+						fraseNova += "g";
+					break;
+				case 'h':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "H";
+					else
+						fraseNova += "h";
+					break;
+				case 'i':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "I";
+					else
+						fraseNova += "i";
+					break;
+				case 'j':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "J";
+					else
+						fraseNova += "j";
+					break;
+				case 'k':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "K";
+					else
+						fraseNova += "k";
+					break;
+				case 'l':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "L";
+					else
+						fraseNova += "l";
+					break;
+				case 'm':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "M";
+					else
+						fraseNova += "m";
+					break;
+				case 'n':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "N";
+					else
+						fraseNova += "n";
+					break;
+				case 'o':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "O";
+					else
+						fraseNova += "o";
+					break;
+				case 'p':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "P";
+					else
+						fraseNova += "p";
+					break;
+				case 'q':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "Q";
+					else
+						fraseNova += "q";
+					break;
+				case 'r':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "R";
+					else
+						fraseNova += "r";
+					break;
+				case 's':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "S";
+					else
+						fraseNova += "s";
+					break;
+				case 't':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "T";
+					else
+						fraseNova += "t";
+					break;
+				case 'u':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "U";
+					else
+						fraseNova += "u";
+					break;
+				case 'v':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "V";
+					else
+						fraseNova += "v";
+					break;
+				case 'w':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "W";
+					else
+						fraseNova += "w";
+					break;
+				case 'x':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "X";
+					else
+						fraseNova += "x";
+					break;
+				case 'y':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "Y";
+					else
+						fraseNova += "y";
+					break;
+				case 'z':
+					if (numeroDeSimb % 2 == 0)
+						fraseNova += "Z";
+					else
+						fraseNova += "z";
+					break;
+				default:
+					break;
+				}
+
+			}
+
+			resposta = fraseNova + "\n" + resposta;
+		}
+		System.out.println(resposta);
+	}
+}
