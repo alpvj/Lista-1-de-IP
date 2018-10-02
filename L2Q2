@@ -1,0 +1,16 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int quantidade = in.nextInt();
+		String frase = "Essas malandra, assanhadinha, que so quer ";
+
+		while (quantidade > 0) {
+			frase = frase + "vrau ";
+			quantidade--;
+		}
+		System.out.print(frase);
+  }
+}
