@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		
+		Double comprimento = Double.parseDouble(in.nextLine()),
+			   largura = Double.parseDouble(in.nextLine()), coordX, coordY;
+		String tipo = in.nextLine();
+			   coordX = Double.parseDouble(in.nextLine());
+			   coordY = Double.parseDouble(in.nextLine());
+
+		
+		if (tipo.equals("Saque")) {
+			if (coordX >= (0.25 * comprimento) && (coordX < 0.5 * comprimento) && (coordY >= 0) && (coordY <= largura))
+				System.out.println("A bola foi rebatida");
+			else
+				System.out.println("A bola foi para fora");
+		}
+
+		if (tipo.equals("Bola Normal")) {
+			if (coordX >= 0 && (coordX < 0.5 * comprimento) && (coordY >= 0) && (coordY <= largura))
+				System.out.print("A bola foi rebatida");
+			else
+				System.out.println("A bola foi para fora");
+		}
+  }
+}
