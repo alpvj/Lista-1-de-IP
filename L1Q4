@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    
+    // TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		//fr
+		
+		String Direita = in.nextLine(),
+			   Meio = in.nextLine(),
+			   Esquerda = in.nextLine();
+			//f ? 102 e r ? 114   
+		if ((Direita.charAt(0) == 'f' || Direita.charAt(0) == 'F') && (Direita.charAt(Direita.length()-1) == 'r' || Direita.charAt(Direita.length()-1) == 'R' )) {
+			System.out.println("Direita");
+		}
+		
+		else if ((Meio.charAt(0) == 'f' || Meio.charAt(0) == 'F'  ) && ( Meio.charAt(Meio.length()-1) == 'r' ||   Meio.charAt(Meio.length()-1) == 'R'  )) {
+			System.out.println("Meio");
+		}
+		
+		else if ((Esquerda.charAt(0) == 'f'|| Esquerda.charAt(0) == 'F' ) && (Esquerda.charAt(Esquerda.length()-1) == 'r'  || Esquerda.charAt(Esquerda.length()-1) == 'R'  )) {
+			System.out.println("Esquerda");
+		}
+		else {
+			
+			System.out.println("Vou em frente");
+		}
+		//s.charAt();
+		//S.length();
+    
+  }
+}
