@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int dinheiroTotal = in.nextInt();
+		int precoProduto1 = in.nextInt(); String nomeProduto1 = in.next();
+		int precoProduto2 = in.nextInt(); String nomeProduto2 = in.next();
+		int precoProduto3 = in.nextInt(); String nomeProduto3 = in.next();
+		int precoProduto4 = in.nextInt(); String nomeProduto4 = in.next();
+		int precoProduto5 = in.nextInt(); String nomeProduto5 = in.next();
+		int precoProduto6 = in.nextInt(); String nomeProduto6 = in.next();
+	//O quanto ele precisa gastar
+		int custo = precoProduto1 + precoProduto2 + precoProduto3 + precoProduto4 + precoProduto5 + precoProduto6,
+		quantoFalta = custo - dinheiroTotal;
+	//Se Mario tiver dinheiro:
+		if (dinheiroTotal >= custo) 
+			System.out.printf("Mario gastara um total de R$ %d.", custo);
+	//Se Mario nao tiver o dinheiro, quanto falta?
+		else 
+			System.out.printf("Infelizmente nao sera possivel comprar tudo, faltam R$ %d.", quantoFalta);
+	}
+}
