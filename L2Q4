@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		double cache = in.nextDouble();
+		double arrecadado = 0;
+	
+		while (in.hasNext()) {
+		String curso = in.next();
+		String pessoa = in.nextLine();
+		if (curso.equals("CC"))
+			arrecadado = arrecadado + 5;
+		else if (curso.equals("EC"))
+			arrecadado = arrecadado + 10;
+		else
+			arrecadado = arrecadado + 15;
+	
+	}
+	if (cache <= arrecadado)
+		System.out.println("Cebruthius!");
+	else
+		System.out.println("Escamou!");
+	}
+}
