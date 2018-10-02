@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		double numeroN = in.nextDouble(), numeroPi = 0;//, contador = 0, divisor = 1, resultadoDivisao = 0;
+
+		/*while (contador < numeroN) {
+			resultadoDivisao = 1 / divisor;
+			
+			if (contador % 2 == 0)
+				numeroPi += resultadoDivisao;
+
+			else
+				numeroPi -= resultadoDivisao;
+
+			contador++;
+			divisor += 2;
+		}*/
+		for (double contador = 0, divisor = 1, resultadoDivisao = 0;contador < numeroN;contador++, divisor += 2) {
+					resultadoDivisao = 1 / divisor;
+			
+			if (contador % 2 == 0)
+				numeroPi += resultadoDivisao;
+
+			else
+				numeroPi -= resultadoDivisao;
+		}
+		numeroPi *= 4;
+		System.out.printf("%.5f", numeroPi);
+	}
+
+}
