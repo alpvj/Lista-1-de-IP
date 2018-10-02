@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+   Scanner in = new Scanner(System.in);
+		String frase = in.nextLine();
+		boolean tipo = false;
+		int contador = 0;
+		frase = frase.replaceAll(" ", "");
+		if (frase.length() % 2 == 0) {
+			while (contador <= (frase.length() / 2) - 1) {
+				if (frase.charAt(contador) == frase.charAt(frase.length() - 1 - contador) || frase.charAt(contador) == frase.charAt(frase.length() - 1 - contador)+32 || frase.charAt(contador) == frase.charAt(frase.length() - 1 - contador )-32)
+					tipo = true;
+				else {
+					tipo = false;
+					contador += 1000;
+				}
+				contador++;
+			}
+		}
+
+		else {
+			while (contador <= (frase.length() / 2) - 0.5) {
+				if (frase.charAt(contador) == frase.charAt(frase.length() - 1 - contador) || frase.charAt(contador) == frase.charAt(frase.length() - 1 - contador)+32 || frase.charAt(contador) == frase.charAt(frase.length() - 1 - contador )-32)
+					tipo = true;
+				else {
+					tipo = false;
+					contador += 1000;
+				}
+				contador++;
+			}
+
+		}
+		if (tipo)
+			System.out.println("SIM");
+		else
+			System.out.println("NAO");
+	}
+}
