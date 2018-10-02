@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int pessoas = in.nextInt(), Anitta = 0, Ludmilla = 0, Jojo = 0, Kevinho = 0, Livinho = 0, outro = 0;
+		String cantor;
+
+		while (pessoas > 0) {
+			cantor = in.next();
+			switch (cantor) {
+			case "Anitta":
+				Anitta++;
+				break;
+			case "Ludmilla":
+				Ludmilla++;
+				break;
+			case "Jojo":
+				Jojo++;
+				break;
+			case "Kevinho":
+				Kevinho++;
+				break;
+			case "Livinho":
+				Livinho++;
+				break;
+			default:
+				outro++;
+			}
+			pessoas--;
+		}
+		if (Anitta > Ludmilla && Anitta > Jojo && Anitta > Kevinho && Anitta > Livinho && Anitta >= outro)
+			System.out.println("As pessoas estao esperando por Anitta.");
+		else if (Ludmilla > Anitta && Ludmilla > Jojo && Ludmilla > Kevinho && Ludmilla > Livinho && Ludmilla >= outro)
+			System.out.println("As pessoas estao esperando por Ludmilla.");
+		else if (Jojo > Anitta && Jojo > Ludmilla && Jojo > Kevinho && Jojo > Livinho && Jojo >= outro)
+			System.out.println("As pessoas estao esperando por Jojo.");
+		else if (Kevinho > Anitta && Kevinho > Ludmilla && Kevinho > Jojo && Kevinho > Livinho && Kevinho >= outro)
+			System.out.println("As pessoas estao esperando por Kevinho.");
+		else if (Livinho > Anitta && Livinho > Ludmilla && Livinho > Jojo && Livinho > Kevinho && Livinho >= outro)
+			System.out.println("As pessoas estao esperando por Livinho.");
+		else if (outro > Anitta && outro > Ludmilla && outro > Jojo && outro > Livinho)
+			System.out.println("As pessoas querem ver outra pessoa");
+		else {
+			if (Anitta !=0 ) {
+			if (Anitta == Ludmilla)
+				System.out.println("Houve um empate entre: Anitta, Ludmilla");
+			else if (Anitta == Jojo)
+				System.out.println("Houve um empate entre: Anitta, Jojo");
+			else if (Anitta == Kevinho)
+				System.out.println("Houve um empate entre: Anitta, Kevinho");
+			else if (Anitta == Livinho)
+				System.out.println("Houve um empate entre: Anitta, Livinho");
+			}
+			else if (Ludmilla !=0 ) {
+			if (Ludmilla == Jojo)
+				System.out.println("Houve um empate entre: Jojo, Ludmilla");
+			else if (Ludmilla == Kevinho)
+				System.out.println("Houve um empate entre: Kevinho, Ludmilla");
+			else if (Ludmilla == Livinho)
+				System.out.println("Houve um empate entre: Livinho, Ludmilla");
+			}
+			else if (Jojo != 0) {
+			if (Jojo == Kevinho)
+				System.out.println("Houve um empate entre: Jojo, Kevinho");
+			else if (Jojo == Livinho)
+				System.out.println("Houve um empate entre: Jojo, Livinho");
+			}
+			else if (Kevinho != 0) {
+			if (Kevinho == Livinho)
+				System.out.println("Houve um empate entre: Kevinho, Livinho");
+			}
+		}
+
+  }
+}
