@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+   Scanner in = new Scanner(System.in);
+		double vodka = 0, termo = 0, X, numDeTermos, a = 0, b = 1, contagem = 1, numB, fatorialDeB = 1;
+		X = in.nextDouble();
+		numDeTermos = in.nextDouble();
+		while (numDeTermos > 1) {
+			a += 2;
+			b += 2;
+			numB = b;
+			fatorialDeB = 1;
+			while (numB > 1) {
+				fatorialDeB *= numB;
+				numB--;	
+			}
+			if (contagem % 2 == 0)
+				termo += ((Math.pow(X, a)) / (fatorialDeB));
+			else
+				termo -= ((Math.pow(X, a)) / (fatorialDeB));
+
+			contagem++;
+			numDeTermos--;
+			// ((X^2)/(3!)) + ((X^4)/(5!)) - ((X^6)/(7!)) + ((X^8)/(9!))
+		}
+		if (numDeTermos == 0)
+			vodka = 0;
+		else
+			vodka = Math.abs(X + termo);
+		System.out.printf("%.3f", vodka);
+	}
+}
