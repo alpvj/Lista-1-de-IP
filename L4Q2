@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		String[][] matrizJogadores = new String[3][3];
+		// Preenchendo a matriz
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				matrizJogadores[i][j] = in.next();
+
+		// Trocando as posi�oes
+		// 00 01 02 	 00 10 20
+		// 10 11 12 ---> 01 11 21
+		// 20 21 22 	 02 12 22
+
+		String aux;
+		// 01 e 10
+		aux = matrizJogadores[0][1];
+		matrizJogadores[0][1] = matrizJogadores[1][0];
+		matrizJogadores[1][0] = aux;
+
+		// 02 e 20
+		aux = matrizJogadores[0][2];
+		matrizJogadores[0][2] = matrizJogadores[2][0];
+		matrizJogadores[2][0] = aux;
+
+		// 12 e 21
+		aux = matrizJogadores[1][2];
+		matrizJogadores[1][2] = matrizJogadores[2][1];
+		matrizJogadores[2][1] = aux;
+
+		// Imprimindo
+		System.out.printf("%s %s %s%n%s %s %s%n%s %s %s",
+				matrizJogadores[0][0], matrizJogadores[0][1], matrizJogadores[0][2],
+				matrizJogadores[1][0], matrizJogadores[1][1], matrizJogadores[1][2],
+				matrizJogadores[2][0], matrizJogadores[2][1], matrizJogadores[2][2]);
+	}
+}
