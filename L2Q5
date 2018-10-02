@@ -1,0 +1,341 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int diaHoje = in.nextInt(), mesHoje = in.nextInt(), anoHoje = in.nextInt(), diaShow = in.nextInt(),
+				mesShow = in.nextInt(), anoShow = in.nextInt(), dias = 0;
+		// Ver se ? ano bissexto
+		boolean bissextoHoje = false, bissextoShow = false;
+		// DataHoje
+		if (anoHoje % 4 == 0 && anoHoje % 100 == 0 && anoHoje % 400 == 0) // 2000
+			bissextoHoje = true;
+		else if (anoHoje % 4 == 0 && anoHoje % 100 == 0 && anoHoje % 400 != 0) // 1900
+			bissextoHoje = false;
+		else if (anoHoje % 4 != 0) // 2011
+			bissextoHoje = false;
+		else // 2012
+			bissextoHoje = true;
+		// DataShow
+		if (anoShow % 4 == 0 && anoShow % 100 == 0 && anoShow % 400 == 0) // 2000
+			bissextoShow = true;
+		else if (anoShow % 4 == 0 && anoShow % 100 == 0 && anoShow % 400 != 0) // 1900
+			bissextoShow = false;
+		else if (anoShow % 4 != 0) // 2011
+			bissextoShow = false;
+		else // 2012
+			bissextoShow = true;
+
+		if (anoHoje != anoShow) {
+			// Quantos dias faltam at? o pr?ximo m?s
+			if (mesHoje == 1)
+				dias = dias + 1 + (31 - diaHoje);// vai para fevereiro
+			else if (mesHoje == 2 && bissextoHoje == true)
+				dias = dias + 1 + (29 - diaHoje);
+			else if (mesHoje == 2 && bissextoHoje == false)
+				dias = dias + 1 + (28 - diaHoje);
+			else if (mesHoje == 3)
+				dias = dias + 1 + (31 - diaHoje);
+			else if (mesHoje == 4)
+				dias = dias + 1 + (30 - diaHoje);
+			else if (mesHoje == 5)
+				dias = dias + 1 + (31 - diaHoje);
+			else if (mesHoje == 6)
+				dias = dias + 1 + (30 - diaHoje);
+			else if (mesHoje == 7)
+				dias = dias + 1 + (31 - diaHoje);
+			else if (mesHoje == 8)
+				dias = dias + 1 + (31 - diaHoje);
+			else if (mesHoje == 9)
+				dias = dias + 1 + (30 - diaHoje);
+			else if (mesHoje == 10)
+				dias = dias + 1 + (31 - diaHoje);
+			else if (mesHoje == 11)
+				dias = dias + 1 + (30 - diaHoje);
+			else if (mesHoje == 12)
+				dias = dias + 1 + (31 - diaHoje);
+			// ao final desta etapa estaremos no mesHoje + 1
+
+			// Quantos dias faltam at? o fim do ano
+			// (o mes come?a um pra frente pois ja adicionei o dia at? o pr?x mes)
+			if (mesHoje == 1 && bissextoHoje == false) {// fevereiro
+				dias = dias + 334;
+				anoHoje++;
+			} else if (mesHoje == 1 && bissextoHoje == true) {// fevereiro de bissexto
+				dias = dias + 335;
+				anoHoje++;
+			} else if (mesHoje == 2) {// mar?o
+				dias = dias + 306;
+				anoHoje++;
+			} else if (mesHoje == 3) {// abril
+				dias = dias + 275;
+				anoHoje++;
+			} else if (mesHoje == 4) {// maio
+				dias = dias + 245;
+				anoHoje++;
+			} else if (mesHoje == 5) {// junho
+				dias = dias + 214;
+				anoHoje++;
+			} else if (mesHoje == 6) {// julho
+				dias = dias + 184;
+				anoHoje++;
+			} else if (mesHoje == 7) {// agosto
+				dias = dias + 153;
+				anoHoje++;
+			} else if (mesHoje == 8) {// setembro
+				dias = dias + 122;
+				anoHoje++;
+			} else if (mesHoje == 9) {// outubro
+				dias = dias + 92;
+				anoHoje++;
+			} else if (mesHoje == 10) {// novembro
+				dias = dias + 61;
+				anoHoje++;
+			} else if (mesHoje == 11) {// dezembro
+				dias = dias + 31;
+				anoHoje++;
+			} else if (mesHoje == 12)// Janeiro do outro ano
+				anoHoje++;
+
+			// Agora a data tem que chegar at? o ano do show
+			while (anoHoje < anoShow) {
+				// testando denovo se o ano atual ? bissexto
+				// DataHoje
+				if (anoHoje % 4 == 0 && anoHoje % 100 == 0 && anoHoje % 400 == 0) // 2000
+					bissextoHoje = true;
+				else if (anoHoje % 4 == 0 && anoHoje % 100 == 0 && anoHoje % 400 != 0) // 1900
+					bissextoHoje = false;
+				else if (anoHoje % 4 != 0) // 2011
+					bissextoHoje = false;
+				else // 2012
+					bissextoHoje = true;
+
+				// adicionando at? o pr?x ano
+				if (bissextoHoje == false)
+					dias = dias + 365;
+				else
+					dias = dias + 366;
+				// Adiciona o ano
+				anoHoje++;
+			} // ao final desta etapa estaremos no mesmo ano do SHOW
+
+			// agora s? falta chega at? a data desejada! lembrando que estou no dia
+			// 01/01/anoShow
+			// indo para o mesShow
+			if (mesShow == 1)
+				dias = dias + 0;// ja estou no mes certo
+
+			else if (mesShow == 2)
+				dias = dias + 31;// vou para o mes 01/fevereiro
+
+			else if (mesShow == 3 && bissextoShow == false)
+				dias = dias + 31 + 28;// vou para o 01/marco
+			else if (mesShow == 3 && bissextoShow == true)
+				dias = dias + 31 + 29;// ^
+
+			else if (mesShow == 4 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31;// vou para o 01/abril
+			else if (mesShow == 4 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31;// ^
+
+			else if (mesShow == 5 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30;// vou para o 01/maio
+			else if (mesShow == 5 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30;// ^
+
+			else if (mesShow == 6 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31;// vou para o 01/junho
+			else if (mesShow == 6 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31;// ^
+
+			else if (mesShow == 7 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31 + 30;// vou para o 01/julho
+			else if (mesShow == 7 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31 + 30;// ^
+
+			else if (mesShow == 8 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31 + 30 + 31;// vou para o 01/agosto
+			else if (mesShow == 8 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31 + 30 + 31;// ^
+
+			else if (mesShow == 9 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31;// vou para o 01/setembro
+			else if (mesShow == 9 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31;// ^
+
+			else if (mesShow == 10 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30;// vou para o 01/outubro
+			else if (mesShow == 10 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30;// ^
+
+			else if (mesShow == 11 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31;// vou para o 01/novembro
+			else if (mesShow == 11 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31;// ^
+
+			else if (mesShow == 12 && bissextoShow == false)
+				dias = dias + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30;// vou para o 01/dezembro
+			else if (mesShow == 12 && bissextoShow == true)
+				dias = dias + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30;// ^
+			// agoro estou no mes do show
+			// falta calcular apenas quantos dias
+			dias = dias + (diaShow - 1);
+			// agora acabou
+		}
+
+		//////////////////////////////////////// metodo
+		//////////////////////////////////////// ////////////////////////////////////////
+		//////////////////////////////////////// 2//////////////////////////////////////////////////////////////////
+
+		else if (anoShow == anoHoje) {
+			int diasQueJaPassaramDoAnoSHOW = 0, diasQueJaPassaramDoAnoHoje = 0;
+			// vou pro mes certo partindo do mes que ESTOU . estou na data diaHoje/mesHoje e
+			// quero ir
+			// para diaShow/mesShow
+			// calcular os dias que ja passaram do ano (usando o diaShow)
+			// e subtrair dos dias que ja passaram do ano (usando o diaHoje)
+
+			// Chegar no mes do Show
+			if (mesShow == mesHoje) {
+			}
+			// nada
+			else if (mesShow == 1)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 0;
+
+			else if (mesShow == 2)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31;
+
+			else if (mesShow == 3 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28;
+			else if (mesShow == 3 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29;
+
+			else if (mesShow == 4 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31;
+			else if (mesShow == 4 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31;
+
+			else if (mesShow == 5 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30;
+			else if (mesShow == 5 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30;
+
+			else if (mesShow == 6 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31;
+			else if (mesShow == 6 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31;
+
+			else if (mesShow == 7 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31 + 30;
+			else if (mesShow == 7 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31 + 30;
+
+			else if (mesShow == 8 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31 + 30 + 31;
+			else if (mesShow == 8 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31 + 30 + 31;
+
+			else if (mesShow == 9 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31;
+			else if (mesShow == 9 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31;
+
+			else if (mesShow == 10 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30;
+			else if (mesShow == 10 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30;
+
+			else if (mesShow == 11 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31;
+			else if (mesShow == 11 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31;
+
+			else if (mesShow == 12 && bissextoShow == false)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31 + 30;
+			else if (mesShow == 12 && bissextoShow == true)
+				diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31 + 30;
+
+			// Chegar no mes de Hoje
+			if (mesShow == mesHoje) {
+			}
+			// nada
+			else if (mesHoje == 1)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 0;
+
+			else if (mesHoje == 2)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31;
+
+			else if (mesHoje == 3 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28;
+			else if (mesHoje == 3 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29;
+
+			else if (mesHoje == 4 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31;
+			else if (mesHoje == 4 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31;
+
+			else if (mesHoje == 5 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30;
+			else if (mesHoje == 5 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30;
+
+			else if (mesHoje == 6 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31;
+			else if (mesHoje == 6 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31;
+
+			else if (mesHoje == 7 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31 + 30;
+			else if (mesHoje == 7 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31 + 30;
+
+			else if (mesHoje == 8 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31 + 30 + 31;
+			else if (mesHoje == 8 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31 + 30 + 31;
+
+			else if (mesHoje == 9 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31;
+			else if (mesHoje == 9 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31;
+
+			else if (mesHoje == 10 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30;
+			else if (mesHoje == 10 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30;
+
+			else if (mesHoje == 11 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31;
+			else if (mesHoje == 11 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31;
+
+			else if (mesHoje == 12 && bissextoHoje == false)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31 + 30;
+			else if (mesHoje == 12 && bissextoHoje == true)
+				diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30
+						+ 31 + 30;
+
+			// Quantos dias faltam pro dia certo (ja estou no mesShow)
+			diasQueJaPassaramDoAnoSHOW = diasQueJaPassaramDoAnoSHOW + (diaShow - 1);
+			// Quantos dias faltam pro dia certo (ja estou no mesHoje)
+			diasQueJaPassaramDoAnoHoje = diasQueJaPassaramDoAnoHoje + (diaHoje - 1);
+
+			// agoro estou no mes do show
+			// falta calcular apenas quantos dias
+			dias = dias + (diasQueJaPassaramDoAnoSHOW - diasQueJaPassaramDoAnoHoje);
+			
+		}
+
+		System.out.println(dias);
+
+	}
+}
