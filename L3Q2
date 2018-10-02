@@ -1,0 +1,87 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		String[] nomeQuartasDeFinal = new String[8];
+		for (int i = 0; i < 8; i++)
+			nomeQuartasDeFinal[i] = in.nextLine();
+
+		int[] ordemDasLutas = new int[8];
+		for (int i = 0; i < 8; i++)
+			ordemDasLutas[i] = in.nextInt();
+
+		System.out.println("Bem vindos ao Exame Chunnin!");
+
+		// Quartas de final 1
+		System.out.printf("Quartas de final 1: %s x %s%n", nomeQuartasDeFinal[ordemDasLutas[0]],
+				nomeQuartasDeFinal[ordemDasLutas[1]]);
+		// Quartas de final 2
+		System.out.printf("Quartas de final 2: %s x %s%n", nomeQuartasDeFinal[ordemDasLutas[2]],
+				nomeQuartasDeFinal[ordemDasLutas[3]]);
+		// Quartas de final 3
+		System.out.printf("Quartas de final 3: %s x %s%n", nomeQuartasDeFinal[ordemDasLutas[4]],
+				nomeQuartasDeFinal[ordemDasLutas[5]]);
+		// Quartas de final 4
+		System.out.printf("Quartas de final 4: %s x %s%n", nomeQuartasDeFinal[ordemDasLutas[6]],
+				nomeQuartasDeFinal[ordemDasLutas[7]]);
+
+		String[] resultadoDasQuartas = new String[4];
+		for (int i = 0; i < 4; i++)
+			resultadoDasQuartas[i] = in.next();
+
+		String[] vencedoresDasQuartas = new String[4];
+		// Resultado Quartas de Final 1 fica no vencedoresDasQuartas[0]
+		if (resultadoDasQuartas[0].equals("A"))
+			vencedoresDasQuartas[0] = nomeQuartasDeFinal[ordemDasLutas[0]];
+		else
+			vencedoresDasQuartas[0] = nomeQuartasDeFinal[ordemDasLutas[1]];
+
+		// Resultado Quartas de Final 2 fica no vencedoresDasQuartas[1]
+		if (resultadoDasQuartas[1].equals("A"))
+			vencedoresDasQuartas[1] = nomeQuartasDeFinal[ordemDasLutas[2]];
+		else
+			vencedoresDasQuartas[1] = nomeQuartasDeFinal[ordemDasLutas[3]];
+
+		// Resultado Quartas de Final 3 fica no vencedoresDasQuartas[2]
+		if (resultadoDasQuartas[2].equals("A"))
+			vencedoresDasQuartas[2] = nomeQuartasDeFinal[ordemDasLutas[4]];
+		else
+			vencedoresDasQuartas[2] = nomeQuartasDeFinal[ordemDasLutas[5]];
+
+		// Resultado Quartas de Final 4 fica no vencedoresDasQuartas[3]
+		if (resultadoDasQuartas[3].equals("A"))
+			vencedoresDasQuartas[3] = nomeQuartasDeFinal[ordemDasLutas[6]];
+		else
+			vencedoresDasQuartas[3] = nomeQuartasDeFinal[ordemDasLutas[7]];
+
+		System.out.printf("Semifinal 1: %s x %s%n", vencedoresDasQuartas[0], vencedoresDasQuartas[1]);
+		System.out.printf("Semifinal 2: %s x %s%n", vencedoresDasQuartas[2], vencedoresDasQuartas[3]);
+
+		// Vendo o resultado das semifinal
+		String[] resultadoDasSemifinal = new String[2];
+		for (int i = 0; i < 2; i++)
+			resultadoDasSemifinal[i] = in.next();
+		// Vencedor das semi
+		String[] vencedoresDasSemifinal = new String[2];
+		if (resultadoDasSemifinal[0].equals("Y"))
+			vencedoresDasSemifinal[0] = vencedoresDasQuartas[1];
+		else
+			vencedoresDasSemifinal[0] = vencedoresDasQuartas[0];
+
+		if (resultadoDasSemifinal[1].equals("Y"))
+			vencedoresDasSemifinal[1] = vencedoresDasQuartas[3];
+		else
+			vencedoresDasSemifinal[1] = vencedoresDasQuartas[2];
+		System.out.printf("Final: %s x %s%n", vencedoresDasSemifinal[0], vencedoresDasSemifinal[1]);
+
+		// GRANDE FINAL
+		String resultadoDaFinal = in.next(), vencedor;
+		if (resultadoDaFinal.equals("%"))
+			System.out.printf("O grande vencedor e %s!", vencedoresDasSemifinal[1]);
+		else
+			System.out.printf("O grande vencedor e %s!", vencedoresDasSemifinal[0]);
+
+	}
+}
