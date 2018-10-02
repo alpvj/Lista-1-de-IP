@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    
+    Scanner in = new Scanner(System.in);
+		//Altura , do seu Impulso, da Dist?ncia entre ele e o mastr, do Peso e se ele vai escolher montar no Yoshi ou n?o
+		//Se ele escolher montar no Yoshi, seu peso ? acrescentado em 50 e seu impulso aumenta em 5.
+		
+		Double Impulso = in.nextDouble(),
+			   Altura = in.nextDouble(),
+			   Distancia = in.nextDouble(),
+			   Peso = in.nextDouble(),
+			   Salto;
+		String Yoshi = in.next();
+		
+		//Se ele escolher montar no Yoshi, seu peso ? acrescentado em 50 e seu impulso aumenta em 5.
+		if (Yoshi.equals("Sim")){
+			Peso = Peso + 50;
+			Impulso = Impulso + 5;
+		}
+		
+		
+		//Medindo o salto
+		Salto = (Math.pow(Impulso, 3)) /( Math.sqrt(Altura) + (Distancia/2) + (Peso/3) ) ;
+
+		
+		if (Salto >= 100) {
+			System.out.println("Voce consegue");
+		}
+		else {
+			System.out.println("Isso e perda de tempo");
+		}
+    
+  }
+}
