@@ -1,0 +1,105 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int numParticipantes = Integer.parseInt(in.nextLine());
+		if (numParticipantes >= 0) {
+			String[] nomeDosParticipantes = new String[numParticipantes];
+			String[] caracDosParticipantes = new String[numParticipantes];
+
+			for (int i = 0; i < numParticipantes; i++) {
+				String leitura = in.nextLine(), nomeNinja = "", caracNinja = "";
+				boolean temCarac = false;
+				for (int j = 0; j < leitura.length(); j++) {
+					if (!temCarac) {
+						if (leitura.charAt(j) == ' ') {
+							temCarac = true;
+						} else
+							nomeNinja += leitura.charAt(j);
+					} else
+						caracNinja += leitura.charAt(j);
+				}
+				nomeDosParticipantes[i] = nomeNinja;
+				caracDosParticipantes[i] = caracNinja;
+			}
+			String listaSapos = "", listaCobras = "", listaLesmas = "", listaMacacos = "", listaCaes = "";
+			boolean temJounin = false;
+			for (int i = 0; i < numParticipantes; i++) {
+				switch (caracDosParticipantes[i]) {
+				case "Coragem":
+					listaSapos += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Determinacao":
+					listaSapos += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Conviccao":
+					listaSapos += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Ambicao":
+					listaCobras += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Astucia":
+					listaCobras += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Expertise":
+					listaCobras += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Analise":
+					listaLesmas += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Suporte":
+					listaLesmas += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Tecnica":
+					listaLesmas += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Agilidade":
+					listaMacacos += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Inteligencia":
+					listaMacacos += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Destreza":
+					listaMacacos += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Experiencia":
+					listaCaes += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Perspicacia":
+					listaCaes += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				case "Pericia":
+					listaCaes += "\n" + "- " + nomeDosParticipantes[i];
+					temJounin = true;
+					break;
+				default:
+					break;
+				}
+
+			}
+			if (temJounin) {
+				System.out.printf("Sapos:%s%nCobras:%s%nLesmas:%s%nMacacos:%s%nCaes:%s%n", listaSapos, listaCobras,
+						listaLesmas, listaMacacos, listaCaes);
+			} else
+				System.out.println("Nao havera Jounins forte esse ano");
+		}
+		else
+			System.out.println("Nao havera Jounins forte esse ano");
+	}
+}
