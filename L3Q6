@@ -1,0 +1,81 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		// Criando o alvo
+		int tamanhoAlvo = in.nextInt();
+		int[] alvo = new int[tamanhoAlvo];
+		for (int i = 0, valor = 1; i < (alvo.length / 2); i++, valor++) {
+			alvo[i] = valor;
+			alvo[alvo.length - 1 - i] = valor;
+		}
+		// Corrigir o valor do alvo caso ele seja de tamanho impar
+		if ((alvo.length) % 2 != 0)
+			alvo[alvo.length / 2] = ((alvo.length / 2) + 1);
+
+		// Criando o alvo para que o [0] seja 0 e n�o 1
+		int[] alvoOficial = new int[alvo.length + 1];
+		for (int i = 1; i < alvoOficial.length; i++)
+			alvoOficial[i] = alvo[i - 1];
+
+		// Quantas kunais?
+		int qtdKunais = in.nextInt(), pontosSASUKE = 0, pontosITACHI = 0;
+		// Onde SASUKE acertou?
+		int[] acertoNoAlvoSASUKE = new int[qtdKunais];
+		for (int i = 0; i < qtdKunais; i++)
+			acertoNoAlvoSASUKE[i] = in.nextInt();
+		// Onde ITACHI acertou?s
+		int[] acertoNoAlvoITACHI = new int[qtdKunais];
+		for (int i = 0; i < qtdKunais; i++)
+			acertoNoAlvoITACHI[i] = in.nextInt();
+
+		// Se tiver acertado no mesmo lugar nao soma
+		for (int i = 0; i < qtdKunais; i++) {
+			for (int j = 0; j < (qtdKunais - 1); j++) {
+				if (acertoNoAlvoSASUKE[i] == acertoNoAlvoSASUKE[j] && acertoNoAlvoSASUKE[j] != 0 && i != j)
+					acertoNoAlvoSASUKE[i] = 0;
+			}
+		}
+		for (int i = 0; i < qtdKunais; i++) {
+			for (int j = 0; j < (qtdKunais - 1); j++) {
+				if (acertoNoAlvoITACHI[i] == acertoNoAlvoITACHI[j] && acertoNoAlvoITACHI[j] != 0 && i != j)
+					acertoNoAlvoITACHI[i] = 0;
+			}
+		}
+		// Calculando os pontos
+		// Sasuke
+		for (int i = 0; i < qtdKunais; i++)
+			if (acertoNoAlvoSASUKE[i] <= alvoOficial.length)
+				pontosSASUKE += alvoOficial[acertoNoAlvoSASUKE[i]];
+
+		// Itachi
+		for (int i = 0; i < qtdKunais; i++)
+			if (acertoNoAlvoITACHI[i] <= alvoOficial.length)
+				pontosITACHI += alvoOficial[acertoNoAlvoITACHI[i]];
+
+		// Printar os placares
+		System.out.printf("Sasuke: %d%nItachi: %d%n", pontosSASUKE, pontosITACHI);
+
+		// Ganhador ou empate
+		if (pontosSASUKE > pontosITACHI)
+			System.out.println("Sasuke Uchiha");
+		else if (pontosITACHI > pontosSASUKE)
+			System.out.println("Itachi Uchiha");
+		else if (pontosITACHI != 0 && pontosSASUKE != 0)
+			System.out.println("O empate nunca existiu, voce esta preso num genjutsu");
+
+		// Se Itachi nao pontuar
+		if (pontosITACHI == 0 && pontosSASUKE != 0)
+			System.out.println("Um genjutsu desse nivel nao funciona em mim");
+
+		// Se Sasuke nao pontuar
+		if (pontosSASUKE == 0 && pontosITACHI != 0)
+			System.out.println("Voce e fraco, lhe falta odio");
+
+		// Se nao pontuarem
+		if (pontosSASUKE == 0 && pontosITACHI == 0)
+			System.out.println("Os Uchihas nem sao tao bons mesmo");
+	}
+}
