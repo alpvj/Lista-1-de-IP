@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    	Scanner in = new Scanner(System.in);
+		// Armazenando as entradas
+		int sizeMatriz = in.nextInt(), jogadas = in.nextInt();
+		int[][] matrizOficial = new int[sizeMatriz][sizeMatriz];
+		for (int i = 0; i < sizeMatriz; i++) {
+			for (int j = 0; j < sizeMatriz; j++) {
+				matrizOficial[i][j] = in.nextInt();
+			}
+		}
+
+		// Vendo se eh ou nao eh bomba
+		boolean resultado = true;
+		for (int i = 0, coordX = 0, coordY = 0, somaDireita = 0, somaAbaixo = 0, somaDiagInfDir = 0; i < jogadas; i++, somaDireita = 0, somaAbaixo = 0, somaDiagInfDir = 0) {
+			// Lendo as coords
+			coordX = in.nextInt();
+			coordY = in.nextInt();
+
+			// SomaDireita
+			for (int j = coordY; j < sizeMatriz; j++)
+				if (matrizOficial[coordX][j] != -1)
+					somaDireita += matrizOficial[coordX][j];
+
+			// SomaAbaixo
+			for (int j = coordX; j < sizeMatriz; j++)
+				if (matrizOficial[j][coordY] != -1)
+					somaAbaixo += matrizOficial[j][coordY];
+
+			// SomaDiagInfDir
+			for (int j = coordX, k = coordY; j < sizeMatriz  && k < sizeMatriz; j++, k++)
+				if (matrizOficial[j][k] != -1)
+					somaDiagInfDir += matrizOficial[j][k];
+			// Imprimir o resultado desta Coord
+			if (somaDireita == somaAbaixo && somaAbaixo == somaDiagInfDir) {
+				System.out.println("Bomba encontrada.");
+				resultado = false;
+				i += jogadas;// um break;
+			} else {
+				if (matrizOficial[coordX][coordY] != -1) {
+					System.out.printf("Boa jogada, a casa (%d,%d) nao tinha bomba.%n", coordX, coordY);
+					matrizOficial[coordX][coordY] = -1;
+				} else
+					System.out.println("Essa casa ja foi selecionada.");
+			}
+		}
+		// Se ganhou ou se perdeu
+		if (resultado)
+			System.out.println("Voce e uma pessoa de sorte.");
+		else
+			System.out.println("Voce perdeu.");
+	}
+}
