@@ -1,0 +1,16 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int ingresso = in.nextInt(), nLinhas = 0, numeroNaLinha;
+	while (ingresso>0) {
+		numeroNaLinha = in.nextInt();
+		nLinhas++;
+		ingresso--;
+		if (nLinhas == numeroNaLinha)
+			System.out.printf("o ingresso de numero %d foi sorteado", numeroNaLinha);
+	}
+  }
+}
