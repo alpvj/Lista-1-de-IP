@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    
+    Scanner in = new Scanner(System.in);
+		
+		int x = in.nextInt(),
+			y = in.nextInt(),
+			z = in.nextInt();
+		//x > y > z
+		if(x >= y && x > z && y > z) {
+			System.out.printf("%d %d %d", x, y, z);
+		}
+		//x > z > y
+		if(x > y && x >= z && z > y) {
+			System.out.printf("%d %d %d", x, z, y);
+		}
+
+		//y > x > z
+		if(y > x && y > z && x > z) {
+			System.out.printf("%d %d %d", y, x, z);
+				}
+		
+		//y > z > x
+		if(y > x && y >= z && z > x) {
+			System.out.printf("%d %d %d", y, z, x);
+				}
+
+		//z > x > y
+		if(z > x && z > y && x > y) {
+			System.out.printf("%d %d %d", z, x, y);
+						}
+
+		//z > y > x
+		if(z > y && z > x && y > x) {
+			System.out.printf("%d %d %d", z, y, x);
+		}
+			
+		//x = y = z						
+		if (z==y & y==x) {
+			System.out.printf("%d %d %d", x, y, z);
+		}
+    
+    
+  }
+}
