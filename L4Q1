@@ -1,0 +1,85 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		// Lendo o M e as vidas
+		int sizeMatriz = in.nextInt();
+		double vidaTotalRyu = in.nextInt(), vidaTotalKen = in.nextInt();
+
+		// Gerando os arrays
+		int[][] matrizRyu = new int[sizeMatriz][sizeMatriz];
+		int[][] matrizKen = new int[sizeMatriz][sizeMatriz];
+
+		// Preenchendo as matrizes
+
+		// Ryu
+		for (int i = 0; i < sizeMatriz; i++)
+			for (int j = 0; j < sizeMatriz; j++)
+				matrizRyu[i][j] = in.nextInt();
+
+		// Ken
+		for (int i = 0; i < sizeMatriz; i++)
+			for (int j = 0; j < sizeMatriz; j++)
+				matrizKen[i][j] = in.nextInt();
+
+		// Calculando os Ataques e Defesas
+		int ataqueRyu = 0, defesaRyu = 0, ataqueKen = 0, defesaKen = 0;
+
+		// AtaqueRyu
+		for (int i = 0, j = 0; i < sizeMatriz; i++, j++)
+			ataqueRyu += matrizRyu[i][j];
+
+		// DefesaRyu
+		for (int i = 0, j = sizeMatriz - 1; i < sizeMatriz; i++, j--)
+			defesaRyu += matrizRyu[i][j];
+
+		// AtaqueKen
+		for (int i = 0, j = 0; i < sizeMatriz; i++, j++)
+			ataqueKen += matrizKen[i][j];
+
+		// DefesaKen
+		for (int i = 0, j = sizeMatriz - 1; i < sizeMatriz; i++, j--)
+			defesaKen += matrizKen[i][j];
+
+		// Lendo os comandos da luta
+		int sizeComandos = in.nextInt();
+		String[][] comandos = new String[sizeComandos][2];
+
+		for (int i = 0; i < sizeComandos; i++) {
+			comandos[i][0] = in.next();
+			comandos[i][1] = in.next();
+		}
+
+		// Aplicando os comandos da luta
+
+		for (int i = 0; i < sizeComandos; i++) {
+			// Ataque e Contra-Ataque
+			if (comandos[i][0].equals("A") && comandos[i][1].equals("A")) {
+				if (ataqueRyu > ataqueKen)
+					vidaTotalKen -= (ataqueRyu - ataqueKen);
+				else if (ataqueKen > ataqueRyu)
+					vidaTotalRyu -= (ataqueKen - ataqueRyu);
+			}
+
+			// Ryu atacando e Ken defendendo
+			else if (comandos[i][0].equals("A") && comandos[i][1].equals("D") && (ataqueRyu > defesaKen))
+				vidaTotalKen -= ((ataqueRyu - defesaKen) / 2);
+
+			// Ken atacando e Ryu defendendo
+			else if (comandos[i][0].equals("D") && comandos[i][1].equals("A") && (ataqueKen > defesaRyu))
+				vidaTotalRyu -= ((ataqueKen - defesaRyu) / 2);
+
+		}
+
+		// Determinando o vencedor
+		if (vidaTotalRyu > vidaTotalKen)
+			System.out.println("Ryu ganhou a batalha.");
+		else if (vidaTotalRyu < vidaTotalKen)
+			System.out.println("Ken ganhou a batalha.");
+		else
+			System.out.println("Houve empate.");
+
+	}
+}
