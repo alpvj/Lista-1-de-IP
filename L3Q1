@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    //	!!AVISO PRO MONITOR QUE ESTIVER OLHANDO!!
+		//USEI BASTANTE ARRAY PRA TREINAR, SEI QUE PODERIA TER FEITO UM C�DIGO MUITO MAIS CLEAN
+		Scanner in = new Scanner(System.in);
+		int dinheiroNaruto = in.nextInt(), contaDoNaruto = 0;
+		int[] sopasComidasPorDia = new int[in.nextInt()];
+
+		for (int i = 0; i < sopasComidasPorDia.length; i++)
+			sopasComidasPorDia[i] = in.nextInt();
+
+		int[] saldoDoNaruto = new int[sopasComidasPorDia.length];
+		for (int i = 0; i < sopasComidasPorDia.length; i++) {
+			if (sopasComidasPorDia[i] == 0)
+				saldoDoNaruto[i] = 0;
+			else if (sopasComidasPorDia[i] == 1)
+				saldoDoNaruto[i] = 10;
+			else if (sopasComidasPorDia[i] > 1 && sopasComidasPorDia[i] <= 10)
+				saldoDoNaruto[i] = sopasComidasPorDia[i] * 9;
+			else if (sopasComidasPorDia[i] > 10)
+				saldoDoNaruto[i] = sopasComidasPorDia[i] * 8;
+		}
+
+		for (int i = 0; i < sopasComidasPorDia.length; i++)
+			contaDoNaruto += saldoDoNaruto[i];
+
+		if (contaDoNaruto == 0)
+			System.out.println("Naruto nao apareceu para comer");
+		else if (dinheiroNaruto >= contaDoNaruto)
+			System.out.println("Naruto conseguiu pagar a sua conta!");
+		else
+			System.out.printf("Naruto, faltam %d ryos!", (contaDoNaruto - dinheiroNaruto));
+
+	}
+}
