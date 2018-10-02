@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+    Double M = in.nextDouble(), 
+            A = in.nextDouble(),//Verde
+            B = in.nextDouble(),//Vermelho
+            C = in.nextDouble(),//Roxo
+            D = in.nextDouble(),//Amarelo  
+            Verde = 80/A,
+            Vermelho = 100/B,
+            Roxo = 120/C,
+            Amarelo = 80/D;
+     
+     int Pode = 0;
+     
+     //Checar se ele tem dinheiro
+     if (M >= A | M >= B | M >= C | M >= D){
+              Pode = 1;
+     }
+     else{
+         System.out.println("Acho que vou a pe :(");
+              Pode = 0;
+     }
+         
+         //System.out.printf("Verde: %.1f Vermelho: %.1f Roxo: %.1f Amarelo: %.1f%n", Verde, Vermelho, Roxo, Amarelo);
+     
+     if (Verde >= Vermelho && Verde >= Roxo && Verde >= Amarelo && Pode == 1){
+     
+         System.out.println("Verde");
+     
+     }
+     
+     else if (Vermelho >= Roxo && Vermelho >= Amarelo && Pode == 1){
+     
+         System.out.println("Vermelho");
+     
+     }
+     
+     else if (Roxo >= Amarelo && Pode == 1){
+     
+         System.out.println("Roxo");
+     
+     }
+     else if (Pode == 1){
+     
+         System.out.println("Amarelo");
+     
+     }
+  }
+}
