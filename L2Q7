@@ -1,0 +1,116 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+  Scanner in = new Scanner(System.in);
+		int capacidade = in.nextInt(), numeroQueEntra = 0, numeroQueSai = 0, pessoasNoEvento = 0, numeroVIP = 0,
+				pessoasNaFila = 0, contadorDePessoasQueSairamDaFila = 0, numeroQueEntraNaFila = 0;
+		boolean boolVIP;
+		String tipo, numeroOUvip;
+
+		while (in.hasNext()) {
+			tipo = in.next();
+			numeroOUvip = in.next();
+			System.out.println();
+			numeroQueEntra = 0;
+			numeroQueSai = 0;
+			// Testa se eh VIP
+			if (numeroOUvip.equals("VIP")) {
+				boolVIP = true;
+				numeroVIP++;
+			}
+			// Monta o numero q entra ou q sai
+			else {
+				if (tipo.equals("Entraram"))
+					numeroQueEntra = Integer.parseInt(numeroOUvip);
+				else
+					numeroQueSai = Integer.parseInt(numeroOUvip);
+				boolVIP = false;
+			}
+
+			// Quando for VIP
+			if (boolVIP == true) {
+				if (tipo.equals("Entraram")) {
+					numeroVIP--;
+					numeroQueEntra = 1;
+					pessoasNoEvento++;
+					System.out.printf("%n%d pessoas entraram na casa. Atualmente ha %d pessoas no evento.",
+							numeroQueEntra, pessoasNoEvento);
+				} else {
+					pessoasNoEvento--;
+					System.out.printf("1 pessoas sairam da casa. Atualmente ha %d pessoas no evento.", pessoasNoEvento);
+
+					contadorDePessoasQueSairamDaFila = 0;
+					while ((capacidade - pessoasNoEvento) > 0 && pessoasNaFila > 0) {
+						pessoasNoEvento++;
+						pessoasNaFila--;
+						contadorDePessoasQueSairamDaFila++;
+						if (pessoasNaFila == 0)
+							System.out.print(
+									"%nTodos que estavam na fila de espera conseguiram entrar, atualmente nao ha fila de espera.");
+						else {
+							System.out.printf("%n%d pessoas da fila entraram na casa.",
+									contadorDePessoasQueSairamDaFila);
+							System.out.printf("%nA fila agora contem %d pessoas.", pessoasNaFila);
+						}
+					}
+				}
+			}
+			// NAO EH VIP
+			else {
+				// Quando sair
+				if (tipo.equals("Sairam")) {
+					pessoasNoEvento -= numeroQueSai;
+					System.out.printf("%n%d pessoas sairam da casa. Atualmente ha %d pessoas no evento.", numeroQueSai,
+							pessoasNoEvento);
+
+					contadorDePessoasQueSairamDaFila = 0;
+					while ((capacidade - pessoasNoEvento) > 0 && pessoasNaFila > 0) {
+						pessoasNoEvento++;
+						pessoasNaFila--;
+						contadorDePessoasQueSairamDaFila++;
+					}
+					if (pessoasNaFila == 0) {
+						if (contadorDePessoasQueSairamDaFila > 0) {
+							System.out.printf("%n%d pessoas da fila entraram na casa.",
+									contadorDePessoasQueSairamDaFila);
+						System.out.printf(
+								"%nTodos que estavam na fila de espera conseguiram entrar, atualmente nao ha fila de espera.");}
+
+					} else {
+						System.out.printf("%n%d pessoas da fila entraram na casa.", contadorDePessoasQueSairamDaFila);
+						System.out.printf("%nA fila agora contem %d pessoas.", pessoasNaFila);
+					}
+
+				}
+				// Quando n�o gerar fila
+				if ((capacidade - pessoasNoEvento) >= numeroQueEntra && tipo.equals("Entraram")) {
+					pessoasNoEvento += numeroQueEntra;
+					System.out.printf("%n%d pessoas entraram na casa. Atualmente ha %d pessoas no evento.",
+							numeroQueEntra, pessoasNoEvento);
+				}
+				// Quando gerar fila ( (capacidade - pessoasNoEvento) < numeroQueEntra )
+				else if (tipo.equals("Entraram")) {
+					contadorDePessoasQueSairamDaFila = 0;
+					while ((capacidade - pessoasNoEvento) > 0) {
+						numeroQueEntra--;
+						pessoasNoEvento++;
+						contadorDePessoasQueSairamDaFila++;
+					}
+					if (contadorDePessoasQueSairamDaFila > 0)
+						System.out.printf("%n%d pessoas entraram na casa. Atualmente ha %d pessoas no evento.",
+								contadorDePessoasQueSairamDaFila, pessoasNoEvento);
+					pessoasNaFila += numeroQueEntra;
+					System.out.printf("%nInfelizmente a casa esta lotada, %d pessoas foram redirecionadas para a fila.",
+							numeroQueEntra);
+
+					System.out.printf("%nA fila agora contem %d pessoas.", pessoasNaFila);
+
+				}
+			}
+		}
+		System.out.println();
+		System.out.printf("%nVai Troinha, agora pede o ubii!");
+	}
+}
