@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+   Scanner in = new Scanner(System.in);
+		int numeroDeCompetidores = in.nextInt(), distanciaDaCorrida = in.nextInt(), tempoSemObs, tempoDeCadaObs,
+				intervaloEntreObs, melhorTempo = 99999999, tempoFinalDoCompetidor, numeroDeObsDoComp = 0;
+		String nomeDoCompetidor = "", melhorCompetidor = "";
+		for (; numeroDeCompetidores > 0; numeroDeCompetidores--) {
+			nomeDoCompetidor = in.next();
+			tempoSemObs = (in.nextInt() * 60);
+			intervaloEntreObs = in.nextInt();
+			tempoDeCadaObs = in.nextInt();
+
+			numeroDeObsDoComp = distanciaDaCorrida / intervaloEntreObs;
+			tempoFinalDoCompetidor = tempoSemObs + (numeroDeObsDoComp * tempoDeCadaObs);
+
+			if (tempoFinalDoCompetidor < melhorTempo) {
+				melhorCompetidor = nomeDoCompetidor;
+				melhorTempo = tempoFinalDoCompetidor;
+			}
+		}
+		System.out.printf("%s venceu a corrida em %d segundos!", melhorCompetidor, melhorTempo);
+	}
+}
