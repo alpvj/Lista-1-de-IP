@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int tamanho = in.nextInt();
+		String[] nomeShuriken = new String[tamanho];
+		int[] tamFicha = new int[tamanho];
+		// preenchendo os arrays
+		for (int i = 0; i < tamanho; i++) {
+			nomeShuriken[i] = in.next();
+			tamFicha[i] = in.nextInt();
+		}
+
+		// bubble sort
+		int auxInt = 0;
+		String auxStr = "";
+		for (int i = 0; i < tamanho; i++) {
+			for (int j = 0; j < tamanho - 1; j++) {
+				if (tamFicha[j] > tamFicha[j + 1]) {
+					// tamanho
+					auxInt = tamFicha[j];
+					tamFicha[j] = tamFicha[j + 1];
+					tamFicha[j + 1] = auxInt;
+					// nome
+					auxStr = nomeShuriken[j];
+					nomeShuriken[j] = nomeShuriken[j + 1];
+					nomeShuriken[j + 1] = auxStr;
+				}
+			}
+		}
+
+		int posicao = (in.nextInt() - 1);
+		System.out.printf("Naruto devera usar a shuriken %s para esta maquina.", nomeShuriken[posicao]);
+		
+	}
+
+}
