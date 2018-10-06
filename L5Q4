@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+   Scanner in = new Scanner(System.in);
+		int linha = in.nextInt(), coluna = in.nextInt();
+
+		if (linha == 0 || coluna == 0) {
+			System.out.println("Sharpay endoidou!");
+		} else {
+			int[][] matriz = new int[linha][coluna];
+			// preencher a matriz
+			for (int i = 0; i < linha; i++)
+				for (int j = 0; j < coluna; j++) {
+					matriz[i][j] = in.nextInt();
+
+				}
+			boolean parar = false;
+			for (int j = 0; j < coluna; j++)
+				for (int i = 0; i < linha; i++) {
+					if (funcao(matriz[i][j]).equals("invadir") && !parar) {
+						System.out.printf("O armario a ser invadido fica no corredor %d, e e o armario de numero %d.",
+								i + 1, j + 1);
+						parar = true;
+					} else if (!parar){
+						System.out.print(funcao(matriz[i][j]));
+						if (!funcao(matriz[i][j]).equals(""))
+							parar = true;
+					}
+				}
+			if (!parar)
+				System.out.println("Sharpay endoidou!");
+		}
+	}
+
+	public static String funcao(int a) {
+		if (a < 0)
+			return "Voce foi descoberto! Corra dancando Bop To the Top!!";
+		else if (a > 0)
+			return "";
+		else
+			return "invadir";
+	}
+}
