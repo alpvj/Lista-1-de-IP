@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int voltasTotal = 0, voltas;
+		while (in.hasNext()) {
+			voltas = in.nextInt();
+			voltasTotal += voltas;
+
+			if (fat(voltas) < 50)
+				System.out.println(fat(voltas) * 2);
+			else
+				System.out.println(fat(voltas));
+		}
+		if (voltasTotal > 100)
+			System.out.println("WildCats, get the head in the game!");
+		
+		
+
+	}
+
+	public static long fat(int a) {
+		if (a == 0)
+			return 1;
+		else
+			return a * fat(a - 1);
+	}
+}
