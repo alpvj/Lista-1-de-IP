@@ -1,0 +1,67 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		// Ler a entrada
+		int tamanho = in.nextInt();
+		String[] nome = new String[tamanho];
+		int[] grama = new int[tamanho];
+		for (int i = 0; i < tamanho; i++) {
+			nome[i] = in.next();
+			grama[i] = in.nextInt();
+		}
+		// Invertendo recursivamente...
+		String[] novoNome = new String[tamanho];
+		novoNome = inverterNome(nome, 0, "");
+		int[] novoGrama = new int[tamanho];
+		novoGrama = inverterGrama(grama, 0, 0);
+
+		// Mandar o comando para imprimir
+		mandarImprimir(novoNome, novoGrama);
+	}
+
+	// Apenas um modo de mandar imprir
+	public static void mandarImprimir(String[] nome, int[] grama) {
+		for (int i = 0; i < grama.length; i++) {
+			System.out.println(imprimir(nome[i], grama[i]));
+		}
+	}
+
+	// Imprimir o processo do nome e da grama recebida
+	public static String imprimir(String nome, int grama) {
+		grama -= 400;
+		if (grama <= 0)
+			return nome + " foi servido(a).";
+		else
+			return nome + " foi servido(a)." + "\n" + "Fica tranquilo(a), " + nome + " pode se servir novamente!" + "\n"
+					+ imprimir(nome, grama);
+	}
+
+	public static String[] inverterNome(String[] nome, int pos, String aux) {
+		aux = "";
+		if (pos == Math.round(nome.length / 2)) {
+			return nome;
+		} else {
+			aux = nome[pos];
+			nome[pos] = nome[nome.length - 1 - pos];
+			nome[nome.length - 1 - pos] = aux;
+			pos++;
+			return inverterNome(nome, pos, "");
+		}
+	}
+
+	public static int[] inverterGrama(int[] grama, int pos, int aux) {
+		aux = 0;
+		if (pos == Math.round(grama.length / 2)) {
+			return grama;
+		} else {
+			aux = grama[pos];
+			grama[pos] = grama[grama.length - 1 - pos];
+			grama[grama.length - 1 - pos] = aux;
+			pos++;
+			return inverterGrama(grama, pos, 0);
+		}
+	}
+}
