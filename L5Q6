@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int nPessoas = in.nextInt(), nConexoes = in.nextInt();
+		// Ler os nomes
+		String[] nomes = new String[nPessoas];
+		for (int i = 0; i < nomes.length; i++) {
+			nomes[i] = in.next();
+		}
+
+		// Fazer a matriz das conexoes
+		boolean[][] matrizCon = new boolean[nPessoas][nPessoas];
+		for (int i = 0; i < nConexoes; i++) {
+			int conexaoDe = in.nextInt();
+			int conexaoEm = in.nextInt();
+			matrizCon[conexaoDe][conexaoEm] = true;
+		}
+		// Ver em quem o microfone comeca
+		String strComecaEm = in.next();
+		int comecaEm = 0;
+		for (int i = 0; i < nPessoas; i++) {
+			if (nomes[i].equals(strComecaEm)) {
+				comecaEm = i;
+				i += nPessoas;
+			}
+		}
+		// Ver em quem o microfone termina
+		String strTerminaEm = in.next();
+		int terminaEm = 0;
+		for (int i = 0; i < nPessoas; i++) {
+			if (nomes[i].equals(strTerminaEm)) {
+				terminaEm = i;
+				i += nPessoas;
+			}
+		}
+
+		// O q retorna
+		if (funcao(matrizCon, comecaEm, terminaEm))
+			System.out.println("We're all in this together!");
+		else
+			System.out.println("Mentira, nenhum filme da Disney da errado, nunca.");
+	}
+
+	public static boolean funcao(boolean[][] matriz, int posicaoMicro, int terminaEm) {
+		if (posicaoMicro == terminaEm)
+			return true;
+		for (int i = 0; i < matriz.length; i++) {
+			if (matriz[posicaoMicro][i] && funcao(matriz, i, terminaEm)) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
