@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int pacienciaIni = Integer.parseInt(in.nextLine()), numCandidatos = Integer.parseInt(in.nextLine());
+		String[] nomes = new String[numCandidatos];
+		double[] placar = new double[numCandidatos];
+		// preenchendo os arrays
+		for (int i = 0; i < numCandidatos; i++) {
+			nomes[i] = in.nextLine();
+			if (nomes[i].equals("Troy Bolton") || nomes[i].equals("Gabriella Montez")
+					|| nomes[i].equals("Sharpay Evans") || nomes[i].equals("Ryan Evans"))
+				placar[i] += 350;
+			placar[i] += (funcaoSoma(nomes[i]) * (pacienciaIni * funcaoPac(i + 1)));
+		}
+		// Ver quem ganhou
+		String vencedor = "";
+		double aux = 0;
+		for (int i = 0; i < placar.length; i++) {
+			if (placar[i] > aux) {
+				aux = placar[i];
+				vencedor = nomes[i];
+			}
+		}
+		// imprimir o resultado
+		System.out.printf("O grande vencedor(a) do papel principal desse ano foi %s!", vencedor);
+	}
+
+	// A soma dos carac
+	public static int funcaoSoma(String nome) {
+		if (nome.length() == 1)
+			return nome.charAt(0);
+		else
+			return (nome.charAt(0)) + funcaoSoma(nome.substring(1, nome.length()));
+	}
+
+	// paciencia da senhora
+	public static double funcaoPac(int i) {
+		if (i == 0)
+			return 1;
+		else
+			return 0.99 * funcaoPac(i - 1);
+	}
+}
