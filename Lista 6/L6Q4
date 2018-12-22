@@ -1,0 +1,383 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		String leitor, tipo, aux = "";
+		// Criar as garagens
+		Garagem carros = new Garagem();
+		Garagem avioes = new Garagem();
+		Garagem motos = new Garagem();
+		Garagem bikes = new Garagem();
+		Garagem tanques = new Garagem();
+		Garagem submarinos = new Garagem();
+		boolean temCarro = false, temAviao = false, temMoto = false, temBike = false, temTanque = false, temSub = false;
+		// Leitor e executor
+		while (in.hasNext()) {
+			leitor = in.next();
+			if (leitor.equals("!"))
+				break;
+			tipo = in.next();
+			switch (leitor) {
+			// adicionar
+			case "VEICULO!!!":
+				// carro
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '7') {
+					carros.insert(tipo);
+					temCarro = true;
+				}
+				// Aviao
+				else if (tipo.charAt(0) == '6' && tipo.charAt(1) == '5') {
+					avioes.insert(tipo);
+					temAviao = true;
+				}
+				// Moto
+				else if (tipo.charAt(0) == '7' && tipo.charAt(1) == '7') {
+					motos.insert(tipo);
+					temMoto = true;
+				}
+				// Bike
+				else if (tipo.charAt(0) == '6' && tipo.charAt(1) == '6') {
+					bikes.insert(tipo);
+					temBike = true;
+				}
+				// Tanque
+				else if (tipo.charAt(0) == '8' && tipo.charAt(1) == '4') {
+					tanques.insert(tipo);
+					temTanque = true;
+				}
+				// Submarino
+				else if (tipo.charAt(0) == '8' && tipo.charAt(1) == '3') {
+					submarinos.insert(tipo);
+					temSub = true;
+				} else
+					System.out.println("VERIFICAR TIPO DE VEICULO");
+				break;
+
+			// verificar
+			case "VERIFICAR":
+				// carro
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '7') {
+					if (carros.verificar(tipo))
+						System.out.println("EXISTE");
+					else
+						System.out.println("AINDA NAO");
+				}
+				// Aviao
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '5') {
+					if (avioes.verificar(tipo))
+						System.out.println("EXISTE");
+					else
+						System.out.println("AINDA NAO");
+				}
+				// Moto
+				if (tipo.charAt(0) == '7' && tipo.charAt(1) == '7') {
+					if (motos.verificar(tipo))
+						System.out.println("EXISTE");
+					else
+						System.out.println("AINDA NAO");
+				}
+				// Bike
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '6') {
+					if (bikes.verificar(tipo))
+						System.out.println("EXISTE");
+					else
+						System.out.println("AINDA NAO");
+				}
+				// Tanque
+				if (tipo.charAt(0) == '8' && tipo.charAt(1) == '4') {
+					if (tanques.verificar(tipo))
+						System.out.println("EXISTE");
+					else
+						System.out.println("AINDA NAO");
+				}
+				// Submarino
+				if (tipo.charAt(0) == '8' && tipo.charAt(1) == '3') {
+					if (submarinos.verificar(tipo))
+						System.out.println("EXISTE");
+					else
+						System.out.println("AINDA NAO");
+				}
+				break;
+			// imprimir
+			case "IMPRIMIR":
+				// carro
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '7') {
+					if (temCarro) {
+						aux = carros.imprimir2(carros.imprimir1());
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						System.out.println(aux);
+					} else
+						System.out.println("A GARAGEM ESTA VAZIA :(");
+				}
+				// Aviao
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '5') {
+					if (temAviao) {
+						aux = avioes.imprimir2(avioes.imprimir1());
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						System.out.println(aux);
+					} else
+						System.out.println("A GARAGEM ESTA VAZIA :(");
+				}
+				// Moto
+				if (tipo.charAt(0) == '7' && tipo.charAt(1) == '7') {
+					if (temMoto) {
+						aux = motos.imprimir2(motos.imprimir1());
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						System.out.println(aux);
+					} else
+						System.out.println("A GARAGEM ESTA VAZIA :(");
+				}
+				// Bike
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '6') {
+					if (temBike) {
+						aux = bikes.imprimir2(bikes.imprimir1());
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						System.out.println(aux);
+					} else
+						System.out.println("A GARAGEM ESTA VAZIA :(");
+				}
+				// Tanque
+				if (tipo.charAt(0) == '8' && tipo.charAt(1) == '4') {
+					if (temTanque) {
+						aux = tanques.imprimir2(tanques.imprimir1());
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						System.out.println(aux);
+					} else
+						System.out.println("A GARAGEM ESTA VAZIA :(");
+				}
+				// Submarino
+				if (tipo.charAt(0) == '8' && tipo.charAt(1) == '3') {
+					if (temSub) {
+						aux = submarinos.imprimir2(submarinos.imprimir1());
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						System.out.println(aux);
+					} else
+						System.out.println("A GARAGEM ESTA VAZIA :(");
+				}
+				break;
+			// vender
+			case "VENDER":
+				// carro
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '7') {
+					aux = carros.imprimir2(carros.imprimir1());
+					// imprime os repetidos e dps manda remover
+					aux = carros.repetidos(aux);
+					// Tirar os espa�os extras
+					for (int i = 0; i < aux.length(); i++) {
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						else
+							break;
+					}
+					if (aux.length() > 0) {
+						System.out.println(aux);
+						carros.remover1(aux);
+					} else
+						System.out.println("NADA REPETIDO POR ENQUANTO :)");
+				}
+				// Aviao
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '5') {
+					aux = avioes.imprimir2(avioes.imprimir1());
+					// imprime os repetidos e dps manda remover
+					aux = avioes.repetidos(aux);
+					for (int i = 0; i < aux.length(); i++) {
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						else
+							break;
+					}
+					if (aux.length() > 0) {
+						System.out.println(aux);
+						avioes.remover1(aux);
+					} else
+						System.out.println("NADA REPETIDO POR ENQUANTO :)");
+				}
+				// Moto
+				if (tipo.charAt(0) == '7' && tipo.charAt(1) == '7') {
+					aux = motos.imprimir2(motos.imprimir1());
+					// imprime os repetidos e dps manda remover
+					aux = motos.repetidos(aux);
+					for (int i = 0; i < aux.length(); i++) {
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						else
+							break;
+					}
+					if (aux.length() > 0) {
+						System.out.println(aux);
+						motos.remover1(aux);
+					} else
+						System.out.println("NADA REPETIDO POR ENQUANTO :)");
+				}
+				// Bike
+				if (tipo.charAt(0) == '6' && tipo.charAt(1) == '6') {
+					aux = bikes.imprimir2(bikes.imprimir1());
+					// imprime os repetidos e dps manda remover
+					aux = bikes.repetidos(aux);
+					for (int i = 0; i < aux.length(); i++) {
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						else
+							break;
+					}
+					if (aux.length() > 0) {
+						System.out.println(aux);
+						bikes.remover1(aux);
+					} else
+						System.out.println("NADA REPETIDO POR ENQUANTO :)");
+				}
+				// Tanque
+				if (tipo.charAt(0) == '8' && tipo.charAt(1) == '4') {
+					aux = tanques.imprimir2(tanques.imprimir1());
+					// imprime os repetidos e dps manda remover
+					aux = tanques.repetidos(aux);
+					for (int i = 0; i < aux.length(); i++) {
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						else
+							break;
+					}
+					if (aux.length() > 0) {
+						System.out.println(aux);
+						tanques.remover1(aux);
+					} else
+						System.out.println("NADA REPETIDO POR ENQUANTO :)");
+				}
+				// Submarino
+				if (tipo.charAt(0) == '8' && tipo.charAt(1) == '3') {
+					aux = submarinos.imprimir2(submarinos.imprimir1());
+					// imprime os repetidos e dps manda remover
+					aux = submarinos.repetidos(aux);
+					for (int i = 0; i < aux.length(); i++) {
+						if (aux.charAt(aux.length() - 1) == ' ')
+							aux = aux.substring(0, aux.length() - 1);
+						else
+							break;
+					}
+					if (aux.length() > 0) {
+						System.out.println(aux);
+						submarinos.remover1(aux);
+					} else
+						System.out.println("NADA REPETIDO POR ENQUANTO :)");
+				}
+				break;
+			}
+		}
+		// acaba
+	}
+}
+
+class Garagem {
+	private String objeto;
+	private Garagem proximo;
+
+	public Garagem() {
+		this.objeto = null;
+		this.proximo = null;
+	}
+
+	public boolean verificar(String ver) {
+		boolean retorno = false;
+		if (this.objeto != null && this.objeto.equals(ver))
+			retorno = true;
+		else if (this.proximo != null)
+			retorno = this.proximo.verificar(ver);
+		else
+			retorno = false;
+
+		return retorno;
+	}
+
+	// imprimir
+	public String imprimir1() {
+		String retorno = "";
+		if (this.proximo != null)
+			retorno += this.objeto + " " + this.proximo.imprimir1();
+		return retorno;
+	}
+
+	// arrumar a impressao
+	public String imprimir2(String linha) {
+		String retorno = "";
+		String[] partesStr = linha.split(" ");
+		int[] partesInt = new int[partesStr.length];
+		// preencher o array de int
+		for (int i = 0; i < partesInt.length; i++) {
+			partesInt[i] = Integer.parseInt(partesStr[i]);
+		}
+		// ordenar (bubble sort)
+		for (int i = 0; i < partesInt.length; i++) {
+			for (int j = 0, aux; j < partesInt.length - 1; j++) {
+				if (partesInt[j] > partesInt[j + 1]) {
+					aux = partesInt[j];
+					partesInt[j] = partesInt[j + 1];
+					partesInt[j + 1] = aux;
+				}
+			}
+		}
+		// botando os 67 devolta e imprimindo
+		for (int i = 0; i < partesInt.length; i++)
+			retorno += partesInt[i] + " ";
+
+		return retorno;
+	}
+
+	public void insert(String objeto) {
+		if (this.objeto == null) {
+			this.objeto = objeto;
+			this.proximo = new Garagem();
+		} else
+			this.proximo.insert(objeto);
+	}
+
+	// faz uma lista dos repetidos
+	public String repetidos(String linha) {
+		String texto = "";
+		String[] partes = linha.split(" ");
+		for (int i = 0, contador; i < partes.length; i++) {
+			contador = -1;
+			for (int j = 0; j < partes.length; j++) {
+				if (partes[i].equals(partes[j])) {
+					contador++;
+					if (contador > 0) {
+						partes[j] = "";
+						texto += partes[i] + " ";
+					}
+				}
+			}
+		}
+		return texto;
+	}
+
+	// remove a lista dos repetidos
+	public void remover1(String repetidos) {
+		if (repetidos.length() == 0)
+			remover2("");
+		else {
+			String[] partes = repetidos.split(" ");
+			for (int i = 0; i < partes.length; i++)
+				remover2(partes[i]);
+		}
+	}
+
+	public void remover2(String objeto) {
+		if (objeto.length() != 0) {
+			if (this.objeto != null) {
+				if (this.objeto.equals(objeto)) {
+					this.objeto = this.proximo.objeto;
+					this.proximo = this.proximo.proximo;
+				} else
+					this.proximo.remover2(objeto);
+			} else
+				throw new RuntimeException("Erro no remover2");
+		}
+	}
+}

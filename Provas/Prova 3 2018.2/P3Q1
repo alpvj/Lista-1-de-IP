@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int M = in.nextInt();
+		int pessoas = 0, arrecadado = 0;
+
+		while (arrecadado < 10000000) {
+			arrecadado = f(M, pessoas);
+			if (arrecadado < 10000000)
+				pessoas++;
+		}
+
+		System.out.println(pessoas + " pessoas precisam assistir ao jogo.");
+	}
+
+	public static int f(int M, int x) {
+		if (x == 0) {
+			return 0;
+		} else if (x == 1) {
+			return M;
+		} else if (x % 2 == 0) {
+			x--;
+			return x + 1 + f(M, x);
+		} else {
+			x--;
+			return M + f(M, x);
+		}
+	}
+}

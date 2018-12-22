@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.*;
+
+//Lista encadeada
+class Lista_Str {
+	private String objeto;
+	private Lista_Str proximo;
+
+	public void Lista() {
+		this.objeto = null;
+		this.proximo = null;
+	}
+
+	public void insert(String pedido) {
+		if (this.objeto == null) {
+			this.objeto = pedido;
+			this.proximo = new Lista_Str();
+		} else
+			this.proximo.insert(pedido);
+	}
+
+	public void remove(String remover) {
+		if (this.objeto.equals(remover)) {
+			this.objeto = this.proximo.objeto;
+			this.proximo = this.proximo.proximo;
+		} else
+			this.proximo.remove(remover);
+	}
+
+	public String toString() {
+		String retorno = "";
+		if (this.proximo != null)
+			retorno += this.objeto + "\n" + this.proximo.toString();
+		return retorno;
+	}
+
+}
+
+// CLASSE DO PROGRAMA
+public class HuxleyCode {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		Lista_Str notaFiscal = new Lista_Str();
+		boolean cabou = false;
+		String aux = "";
+		while (!cabou) {
+			aux = in.nextLine();
+			if (aux.equals("The End"))
+				cabou = true;
+			else
+				notaFiscal.insert(aux);
+		}
+		while (in.hasNext()) {
+			aux = in.nextLine();
+			// if (aux.equals("para"))
+			// break;
+			notaFiscal.remove(aux);
+
+		}
+		String notinha = notaFiscal.toString();
+		if (notinha.length() > 1)
+			System.out.println(notinha);
+		else
+			System.out.println("U gotta null pointer ma man");
+	}
+}

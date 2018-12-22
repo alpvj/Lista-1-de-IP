@@ -1,0 +1,84 @@
+import java.io.*;
+import java.util.*;
+
+class Lista_Str {
+	private String nome;
+	private Lista_Str prox;
+
+	Lista_Str() {
+		this.nome = null;
+		this.prox = null;
+	}
+
+	public void inserir(String nome) {
+		if (this.nome == null) {
+			this.nome = nome;
+			this.prox = new Lista_Str();
+		} else
+			this.prox.inserir(nome);
+
+	}
+
+	public boolean verificar(String nome) {
+		if (this.nome != null && this.nome.equals(nome))
+			return true;
+		else if (this.prox != null)
+			return this.prox.verificar(nome);
+		else
+			return false;
+	}
+
+	public void remover(String nome) {
+		if (this.nome.equals(nome)) {
+			this.nome = "";
+		} else if (this.prox != null)
+			this.prox.remover(nome);
+
+	}
+
+	public String toString() {
+		String texto = "";
+		if (this.prox != null) {
+			if(this.nome.length() > 0)
+			texto += this.nome + "\n" + this.prox.toString();
+			else
+				texto += this.prox.toString();
+		}
+		return texto;
+	}
+}
+
+public class HuxleyCode {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N_Operacoes = in.nextInt();
+		String operacao = "", nome = "";
+		Lista_Str time = new Lista_Str();
+		for (int i = 0; i < N_Operacoes; i++) {
+			operacao = in.next();
+			nome = in.next();
+
+			switch (operacao) {
+			case "ENTRA":
+				time.inserir(nome);
+				break;
+
+			case "PRESENTE":
+				if (time.verificar(nome))
+					System.out.println(nome + " esta no time.");
+				else
+					System.out.println(nome + " nao esta no time.");
+				break;
+
+			case "SAI":
+				time.remover(nome);
+				break;
+
+			default:
+				break;
+			}
+
+		} // for
+		System.out.println(time.toString());
+	}
+}

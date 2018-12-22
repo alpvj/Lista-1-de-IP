@@ -1,0 +1,115 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		int numEstantes = in.nextInt();
+		if (numEstantes == 0) {
+			System.out.println("Nao tem livros por aqui");
+			numEstantes++;
+		} else {
+			in.nextLine();
+			Lista_Array_Str estantes = new Lista_Array_Str();
+			int[] livrosPorEst = new int[numEstantes];
+			for (int i = 0, numLivros; i < numEstantes; i++) {
+				numLivros = in.nextInt();
+				in.nextLine();
+				livrosPorEst[i] = numLivros;
+				// inserir os livros na estante
+				for (int j = 0; j < numLivros; j++) {
+					estantes.insert(in.nextLine());
+				}
+			}
+			// Pegar a estante mais longa
+			int tamanhoMaiorEst = 0;
+			for (int i = 0; i < livrosPorEst.length; i++) {
+				if (livrosPorEst[i] > tamanhoMaiorEst)
+					tamanhoMaiorEst = livrosPorEst[i];
+			}
+			String linha = estantes.toString();
+			int estante = -1, posicao = -1;
+			String[][] library = new String[numEstantes][tamanhoMaiorEst];
+			// Tirar os null
+			for (int i = 0; i < numEstantes; i++)
+				for (int j = 0; j < tamanhoMaiorEst; j++)
+					library[i][j] = "";
+			// Preencher as estantes da biblioteca
+			int I = 0, contadorArroba = -1;
+			for (int j = 0, est = 0, pos = 0; j < livrosPorEst.length; j++) {
+				while (I < linha.length()) {
+					if (linha.charAt(I) != '@') {
+						library[est][pos] += linha.charAt(I);
+						I++;
+					} else {
+						contadorArroba++;
+						I++;
+						if (pos >= (livrosPorEst[est] - 1)) {
+							pos = 0;
+							est++;
+						} else
+							pos++;
+					}
+				}
+			}
+			// Procurar o livro
+			for (int i = 0; i < numEstantes; i++) {
+				for (int j = 0; j < tamanhoMaiorEst; j++) {
+					if (library[i][j].equals("Livro de Rimas")) {
+						estante = i + 1;
+						posicao = j + 1;
+					}
+				}
+			}
+			if (estante == -1)
+				System.out.println("Og Loc, o livro nao esta aqui!");
+			else
+				System.out.printf("Og Loc, o livro ta na estante %d, na posicao %d", estante, posicao);
+		}
+	}
+}
+
+class Lista_Array_Str {
+	private String livro;
+	private Lista_Array_Str prox;
+
+	public void lista(int numLivros) {
+		this.livro = null;
+		this.prox = null;
+	}
+
+	public void insert(String nome) {
+		if (this.livro == null) {
+			this.livro = nome;
+			this.prox = new Lista_Array_Str();
+		} else {
+			this.prox.insert(nome);
+		}
+	}
+
+	public int est(int numEstantes, int[] livrosPorEst, int contadorEst, int contadorLiv) {
+		int resposta = 0;
+
+		if (this.livro.equals("Livro de Rimas"))
+			resposta = contadorEst + 1;
+		else {
+			contadorEst++;
+			contadorLiv++;
+			this.prox.est(numEstantes, livrosPorEst, contadorEst, contadorLiv);
+		}
+		return resposta;
+	}
+
+	public int pos() {
+		return 0;
+	}
+
+	// Debug
+	public String toString() {
+		String aux = "";
+		if (this.prox != null)
+			aux += this.livro + "@" + this.prox.toString();
+		return aux;
+	}
+
+}

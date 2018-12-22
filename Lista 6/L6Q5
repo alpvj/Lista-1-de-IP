@@ -1,0 +1,63 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+ public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int auxint;
+		String auxstr;
+		boolean primeiro = true;
+		Lista elementos = new Lista();
+		while (in.hasNext()) {
+			auxstr = in.nextLine();
+			auxint = Integer.parseInt(in.nextLine());
+
+			if (primeiro) {
+				elementos.inserirP(auxint, auxstr);
+				primeiro = false;
+			} else
+				elementos.inserir(auxint, auxstr);
+		}
+		System.out.println(elementos.toString());
+	}
+}
+
+class Lista {
+	private int num;
+	private Lista prox;
+	private String str;
+
+	public Lista() {
+		num = 99999;
+		prox = null;
+		str = "";
+	}
+
+	public void inserirP(int num, String str) {
+		this.prox = new Lista();
+		this.prox.str = str;
+		this.prox.num = num;
+		this.prox.prox = new Lista();
+	}
+
+	public void inserir(int num, String str) {
+		// Se for maior, por atras
+		if (this.prox.num > num) {
+			Lista aux = new Lista();
+			aux.prox = this.prox;
+			this.prox = aux;
+			aux.num = num;
+			aux.str = str;
+		} else
+			this.prox.inserir(num, str);
+
+	}
+
+	public String toString() {
+		String texto = "";
+		if (this.prox != null) {
+			texto += this.str + "\n" + this.prox.toString();
+		}
+		return texto;
+	}
+}

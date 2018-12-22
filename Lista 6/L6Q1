@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+
+public class HuxleyCode {
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+		boolean cabou = false;
+		int valor;
+		Lista_Int lista = new Lista_Int();
+		while (!cabou) {
+			valor = in.nextInt();
+			if (valor == -1)
+				cabou = true;
+			else {
+				lista.insert(valor);
+			}
+		}
+		int sorteado = in.nextInt();
+		String texto = "O bilhete sorteado e o " + sorteado + " e esta no carrinho ";
+		int casa = lista.funcao(sorteado, 1);
+		if (casa != -1)
+			texto += casa;
+		else
+			texto = "Nenhum carrinho foi sorteado";
+		System.out.println(texto);
+	}
+}
+
+class Lista_Int {
+	private int valor;
+	private Lista_Int prox;
+
+	// criar uma lista
+	public Lista_Int() {
+		this.valor = -1;
+		this.prox = null;
+	}
+
+	// adc um elemento na lista
+	public void insert(int valor) {
+		if (this.valor == -1) {
+			this.valor = valor;
+			this.prox = new Lista_Int();
+		} else
+			this.prox.insert(valor);
+	}
+
+	// retorna a casa e se n tiver, retorna -1
+	public int funcao(int num, int casa) {
+		if (this.valor == num)
+			return casa;
+		else if (this.prox != null) {
+			casa++;
+			return prox.funcao(num, casa);
+		} else
+			return (-1);
+	}
+}
